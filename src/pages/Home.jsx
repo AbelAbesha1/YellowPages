@@ -403,49 +403,66 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <Header />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-[#F8FFF9]">
-        {/* Search Bar */}
-        <div className="w-full max-w-lg p-4">
-          <input
-            type="text"
-            value={inputValue}
-            onChange={handleSearchInputChange}
-            placeholder="Search for businesses..."
-            className={`w-full p-4 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#D7F5DC] ${
-              inputValue ? "border-[#D7F5DC]" : "border-gray-300"
-            }`}
-          />
-        </div>
-
-        {/* Categories List */}
-        <div className="w-full flex flex-wrap justify-center gap-8 mt-6">
-          {categories.map((cat) => (
-            <CategoryButton
-              key={cat.name}
-              title={cat.name}
-              icon={cat.icon}
-              onClick={() => filterCompaniesByCategory(cat.name)}
+    <div className=" h-full w-full bg-[#f6f6f6]">
+      {/* <Header /> */}
+      <div className=" min-h-screen bg-[#ffffff]">
+        <div className="flex flex-col h-full  items-center justify-center">
+          {/* Search Bar */}
+          <div className="w-full max-w-lg p-4">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={handleSearchInputChange}
+              placeholder="Search for businesses..."
+              className={`w-full p-4 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#D7F5DC] ${
+                inputValue ? "border-[#D7F5DC]" : "border-gray-300"
+              }`}
             />
-          ))}
-        </div>
+          </div>
 
-        {/* Company List */}
-        <div className="w-full max-w-lg mt-6">
+          {/* Categories List */}
+          <div className="w-full lg:w-1/2  flex flex-wrap justify-center gap-8 mt-6">
+            {categories.map((cat) => (
+              <CategoryButton
+                key={cat.name}
+                title={cat.name}
+                icon={cat.icon}
+                onClick={() => filterCompaniesByCategory(cat.name)}
+              />
+            ))}
+          </div>
+
+          {/* Company List */}
+        </div>
+        <div className="w-full lg:w-1/2 md:w-1/3 p-3 md:px-9 lg:px-24 lg:mx-12 md:mx-4 mt-6">
           {filteredCompanies.length > 0 ? (
             <ul>
               {filteredCompanies.map((company) => (
-                <li key={company.id} className="mb-4 border p-4 rounded">
-                  <h3 className="text-xl font-bold">{company.name}</h3>
-                  <p>{company.description}</p>
-                  <p>{company.address}</p>
-                  <p>{company.phone}</p>
+                <li
+                  key={company.id}
+                  className="mb-4 p-4 rounded-lg bg-white shadow-md"
+                >
+                  <h3
+                    className="text-xl font-bold"
+                    style={{
+                      color: "#333",
+                      textShadow: "1px 1px 2px #d9d9d9",
+                    }}
+                  >
+                    {company.name}
+                  </h3>
+                  <p style={{ color: "#666" }}>{company.description}</p>
+                  <p style={{ color: "#999" }}>{company.address}</p>
+                  <p style={{ color: "#999" }}>{company.phone}</p>
                   <a
                     href={company.website}
-                    className="text-blue-500"
+                    className="text-blue-500 underline"
                     target="_blank"
                     rel="noopener noreferrer"
+                    style={{
+                      color: "#3490dc",
+                      textShadow: "1px 1px 2px #d9d9d9",
+                    }}
                   >
                     Visit Website
                   </a>
@@ -453,7 +470,14 @@ const Home = () => {
               ))}
             </ul>
           ) : (
-            <p>
+            <p
+              style={{
+                color: "#999",
+                background: "#f6f6f6",
+                padding: "16px",
+                borderRadius: "12px",
+              }}
+            >
               {selectedCategory
                 ? "No companies found in this category."
                 : inputValue
@@ -469,9 +493,9 @@ const Home = () => {
 
 const CategoryButton = ({ title, icon: Icon, onClick }) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex  flex-col items-center">
       <button
-        className="w-16 h-16 flex items-center justify-center bg-[#F8FFF9] text-white rounded-full shadow-md hover:bg-[#77B0AA] transition duration-300"
+        className="w-16 h-16 flex items-center justify-center bg-[#f6f6f6] text-white rounded-full shadow-md hover:bg-[#77B0AA] transition duration-300"
         onClick={onClick}
       >
         <Icon className="w-6 h-6 text-[#333333]" />
