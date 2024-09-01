@@ -434,7 +434,7 @@ const Home = () => {
 
           {/* Company List */}
         </div>
-        <div className="w-full lg:w-1/2 md:w-1/3 p-3 md:px-9 lg:px-24 lg:mx-12 md:mx-4 mt-6">
+        <div className="w-full lg:w-[60%] md:w-1/3 p-3 md:px-9 lg:px-24 lg:mx-12 md:mx-4 mt-6">
           {filteredCompanies.length > 0 ? (
             <ul>
               {filteredCompanies.map((company) => (
