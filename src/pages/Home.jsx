@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
+import { NavbarSimple } from "../components/Navbar";
 import CompanyCard from "../components/CompanyCard";
 import {
   FaSchool,
@@ -403,8 +404,8 @@ const Home = () => {
   }
 
   return (
-    <div className=" h-full w-full bg-[#f6f6f6]">
-      {/* <Header /> */}
+    <div className=" h-full w-full bg-[#ffffff] p4">
+      <NavbarSimple />
       <div className=" min-h-screen bg-[#ffffff]">
         <div className="flex flex-col h-full  items-center justify-center">
           {/* Search Bar */}
@@ -414,14 +415,14 @@ const Home = () => {
               value={inputValue}
               onChange={handleSearchInputChange}
               placeholder="Search for businesses..."
-              className={`w-full p-4 text-lg border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-[#D7F5DC] ${
+              className={`w-full p-4 text-lg border rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-yellow-700 ${
                 inputValue ? "border-[#D7F5DC]" : "border-gray-300"
               }`}
             />
           </div>
 
           {/* Categories List */}
-          <div className="w-full lg:w-1/2  flex flex-wrap justify-center gap-8 mt-6">
+          <div className=" w-full lg:w-[70%] flex flex-wrap justify-center gap-8 mt-6">
             {categories.map((cat) => (
               <CategoryButton
                 key={cat.name}
@@ -434,7 +435,7 @@ const Home = () => {
 
           {/* Company List */}
         </div>
-        <div className="w-full lg:w-[60%] md:w-1/3 p-3 md:px-9 lg:px-24 lg:mx-12 md:mx-4 mt-6">
+        <div className=" md:w-[80%] lg:w-[70%] w-full  mx-auto   p-3 md:px-9 lg:px-24  mt-6">
           {filteredCompanies.length > 0 ? (
             <ul>
               {filteredCompanies.map((company) => (
@@ -495,10 +496,10 @@ const CategoryButton = ({ title, icon: Icon, onClick }) => {
   return (
     <div className="flex  flex-col items-center">
       <button
-        className="w-16 h-16 flex items-center justify-center bg-[#f6f6f6] text-white rounded-full shadow-md hover:bg-[#77B0AA] transition duration-300"
+        className="w-16 h-16  text-yellow-700 hover:bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center bg-[#f6f6f6] shadow-md transition duration-300"
         onClick={onClick}
       >
-        <Icon className="w-6 h-6 text-[#333333]" />
+        <Icon className="w-6 h-6 " />
       </button>
       <span className="mt-2 text-sm font-medium text-gray-700">{title}</span>
     </div>
