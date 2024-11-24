@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import { NavbarSimple } from "../components/Navbar";
 import CompanyCard from "../components/CompanyCard";
+import { useTheme } from "../ThemeContext.jsx";
+
 import {
   FaSchool,
   FaUtensils,
@@ -360,6 +362,7 @@ const categories = [
 ];
 
 const Home = () => {
+  const { darkMode, toggleTheme } = useTheme();
   const [inputValue, setInputValue] = useState("");
   const [index, setIndex] = useState(() => indexCompaniesByCategory(companies));
   const [filteredCompanies, setFilteredCompanies] = useState([]); // Start with an empty array
@@ -404,9 +407,13 @@ const Home = () => {
   }
 
   return (
-    <div className=" h-full w-full bg-[#ffffff] p4">
+    <div className=" h-full w-full bg-[#ffffff] ">
       <NavbarSimple />
-      <div className=" min-h-screen bg-[#ffffff]">
+      <div
+        className={`min-h-screen ${
+          darkMode ? "bg-[#0D4045]" : " bg-[#f6f6f6]"
+        }`}
+      >
         <div className="flex flex-col h-full  items-center justify-center">
           {/* Search Bar */}
           <div className="w-full max-w-lg p-4">
@@ -416,7 +423,7 @@ const Home = () => {
               onChange={handleSearchInputChange}
               placeholder="Search for businesses..."
               className={`w-full p-4 text-lg border rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-yellow-700 ${
-                inputValue ? "border-[#D7F5DC]" : "border-gray-300"
+                inputValue ? "border-[#D7F5DC]" : "border-[#BEDC74]"
               }`}
             />
           </div>
@@ -493,15 +500,22 @@ const Home = () => {
 };
 
 const CategoryButton = ({ title, icon: Icon, onClick }) => {
+  const { darkMode, toggleTheme } = useTheme();
   return (
     <div className="flex  flex-col items-center">
       <button
-        className="w-16 h-16  text-yellow-700 hover:bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center bg-[#f6f6f6] shadow-md transition duration-300"
+        className="w-16 h-16  text-[#f6f6f6] hover:bg-[#f6f6f6] hover:text-[#135D66] rounded-full flex items-center justify-center bg-[#135D66] shadow-md transition duration-300"
         onClick={onClick}
       >
         <Icon className="w-6 h-6 " />
       </button>
-      <span className="mt-2 text-sm font-medium text-gray-700">{title}</span>
+      <span
+        className={`mt-2 text-sm font-medium ${
+          darkMode ? "text-[#A9C4C6]" : "text-[#135D66]"
+        } `}
+      >
+        {title}
+      </span>
     </div>
   );
 };

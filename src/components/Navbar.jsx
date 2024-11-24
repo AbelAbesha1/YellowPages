@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   Collapse,
   Typography,
   IconButton,
+  Switch,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { AddService } from "./AddService";
+import { useTheme } from "../ThemeContext.jsx";
 
 function NavList() {
   return (
@@ -55,22 +57,30 @@ function NavList() {
 }
 
 export function NavbarSimple() {
-  const [openNav, setOpenNav] = React.useState(false);
+  const { darkMode, toggleTheme } = useTheme();
+  const [openNav, setOpenNav] = useState(false);
 
   const handleWindowResize = () =>
     window.innerWidth >= 960 && setOpenNav(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
+
+    // Apply the dark mode class based on the state
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
 
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
-  }, []);
+  }, [darkMode]);
 
   return (
-    <Navbar className=" mx-auto max-w-screen-xl px-6 py-3 shadow-sm rounded-sm">
-      <div className="flex items-center justify-between text-blue-gray-900">
+    <Navbar className="bg-[#f6f6f6] border-none w-full px-6 py-3 shadow-sm rounded-sm dark:bg-[#135D66]">
+      <div className="flex items-center justify-between text-blue-gray-900 dark:text-gray-200">
         <Typography
           as="a"
           href="#"
@@ -79,8 +89,15 @@ export function NavbarSimple() {
         >
           LOGO
         </Typography>
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex items-center">
           <NavList />
+          {/* Dark Mode Toggle */}
+          <div className="ml-6 flex items-center">
+            <Typography variant="small" className="mr-2">
+              {darkMode ? "Dark" : "Light"}
+            </Typography>
+            <Switch color="yellow" onChange={toggleTheme} checked={darkMode} />
+          </div>
         </div>
         <IconButton
           variant="text"
@@ -97,6 +114,13 @@ export function NavbarSimple() {
       </div>
       <Collapse open={openNav}>
         <NavList />
+        {/* Dark Mode Toggle for Mobile */}
+        <div className="flex items-center justify-between px-4 mt-4 lg:hidden">
+          <Typography variant="small" className="mr-2">
+            {darkMode ? "Dark" : "Light"}
+          </Typography>
+          <Switch color="yellow" onChange={toggleTheme} checked={darkMode} />
+        </div>
       </Collapse>
     </Navbar>
   );

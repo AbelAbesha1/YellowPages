@@ -7,9 +7,14 @@ import {
   Input,
   Textarea,
 } from "@material-tailwind/react";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 export function AddService() {
   const [open, setOpen] = React.useState(false);
+
+  const notify = () => toast("Wow so easy !");
   const [company, setCompany] = React.useState({
     id: null,
     name: "",
@@ -45,16 +50,15 @@ export function AddService() {
       category: "",
     });
     setOpen(false);
+    notify();
   };
 
   return (
     <>
-      <Button
-        onClick={handleOpen}
-        className="bg-gradient-to-r from-yellow-500 to-yellow-700"
-      >
+      <Button onClick={handleOpen} className="bg-[#135D66]">
         Add Company
       </Button>
+      <ToastContainer />
       <Dialog
         size="lg"
         open={open}
