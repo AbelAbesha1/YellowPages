@@ -362,7 +362,7 @@ const categories = [
 ];
 
 const Home = () => {
-  const { darkMode, toggleTheme } = useTheme();
+  const { darkMode } = useTheme();
   const [inputValue, setInputValue] = useState("");
   const [index, setIndex] = useState(() => indexCompaniesByCategory(companies));
   const [filteredCompanies, setFilteredCompanies] = useState([]); // Start with an empty array
@@ -384,7 +384,7 @@ const Home = () => {
     const normalizedCategory = category.toLowerCase();
     const filtered = index[normalizedCategory] || [];
     setFilteredCompanies(filtered);
-    setSelectedCategory(category);
+    setSelectedCategory(category); // Set the selected category
     setInputValue(""); // Clear the search input when a category is selected
   }
 
@@ -414,7 +414,7 @@ const Home = () => {
           darkMode ? "bg-[#0D4045]" : " bg-[#f6f6f6]"
         }`}
       >
-        <div className="flex flex-col h-full  items-center justify-center">
+        <div className="flex flex-col h-full items-center justify-center">
           {/* Search Bar */}
           <div className="w-full max-w-lg p-4">
             <input
@@ -429,20 +429,21 @@ const Home = () => {
           </div>
 
           {/* Categories List */}
-          <div className=" w-full lg:w-[70%] flex flex-wrap justify-center gap-8 mt-6">
+          <div className="w-full lg:w-[70%] flex flex-wrap justify-center gap-8 mt-6">
             {categories.map((cat) => (
               <CategoryButton
                 key={cat.name}
                 title={cat.name}
                 icon={cat.icon}
                 onClick={() => filterCompaniesByCategory(cat.name)}
+                isSelected={cat.name === selectedCategory}
               />
             ))}
           </div>
 
           {/* Company List */}
         </div>
-        <div className=" md:w-[80%] lg:w-[70%] w-full  mx-auto   p-3 md:px-9 lg:px-24  mt-6">
+        <div className="md:w-[80%] lg:w-[70%] w-full mx-auto p-3 md:px-9 lg:px-24 mt-6">
           {filteredCompanies.length > 0 ? (
             <ul>
               {filteredCompanies.map((company) => (
@@ -499,20 +500,24 @@ const Home = () => {
   );
 };
 
-const CategoryButton = ({ title, icon: Icon, onClick }) => {
-  const { darkMode, toggleTheme } = useTheme();
+const CategoryButton = ({ title, icon: Icon, onClick, isSelected }) => {
+  const { darkMode } = useTheme();
   return (
-    <div className="flex  flex-col items-center">
+    <div className="flex flex-col items-center">
       <button
-        className="w-16 h-16  text-[#f6f6f6] hover:bg-[#f6f6f6] hover:text-[#135D66] rounded-full flex items-center justify-center bg-[#135D66] shadow-md transition duration-300"
+        className={`w-16 h-16 rounded-full flex items-center justify-center shadow-md transition duration-300 ${
+          isSelected
+            ? "bg-[#f6f6f6] text-[#135D66]"
+            : "bg-[#135D66] text-[#f6f6f6] hover:bg-[#f6f6f6] hover:text-[#135D66]"
+        }`}
         onClick={onClick}
       >
-        <Icon className="w-6 h-6 " />
+        <Icon className="w-6 h-6" />
       </button>
       <span
         className={`mt-2 text-sm font-medium ${
           darkMode ? "text-[#A9C4C6]" : "text-[#135D66]"
-        } `}
+        }`}
       >
         {title}
       </span>
