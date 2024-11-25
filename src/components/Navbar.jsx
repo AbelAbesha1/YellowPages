@@ -9,8 +9,13 @@ import {
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { AddService } from "./AddService";
 import { useTheme } from "../ThemeContext.jsx";
+import { Login } from "./Forms/Login.jsx";
+import { useSelector } from "react-redux";
+import { SignUp } from "./Forms/SignUp.jsx";
+import { Logout } from "./Forms/LogOut.jsx";
 
 function NavList() {
+  const { user } = useSelector((state) => state.auth);
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -23,7 +28,7 @@ function NavList() {
           href="#"
           className="flex items-center hover:text-yellow-700 transition-colors"
         >
-          LogIn
+          {user ? user.email : <Login />}
         </a>
       </Typography>
       <Typography
@@ -36,7 +41,7 @@ function NavList() {
           href="#"
           className="flex items-center hover:text-yellow-700 transition-colors"
         >
-          SignUp
+          {user ? <Logout /> : <SignUp />}
         </a>
       </Typography>
       <Typography
