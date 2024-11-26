@@ -16,6 +16,7 @@ import { Logout } from "./Forms/LogOut.jsx";
 
 function NavList() {
   const { user } = useSelector((state) => state.auth);
+  const { darkMode } = useTheme();
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -26,7 +27,9 @@ function NavList() {
       >
         <a
           href="#"
-          className="flex items-center hover:text-yellow-700 transition-colors"
+          className={` flex items-center ${
+            darkMode ? "text-[#f6f6f6]" : " text-[#135D66]"
+          }`}
         >
           {user ? user.email : <Login />}
         </a>
@@ -37,10 +40,7 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a
-          href="#"
-          className="flex items-center hover:text-yellow-700 transition-colors"
-        >
+        <a href="#" className="flex items-center">
           {user ? <Logout /> : <SignUp />}
         </a>
       </Typography>
@@ -101,7 +101,7 @@ export function NavbarSimple() {
             <Typography variant="small" className="mr-2">
               {darkMode ? "Dark" : "Light"}
             </Typography>
-            <Switch color="yellow" onChange={toggleTheme} checked={darkMode} />
+            <Switch color="" onChange={toggleTheme} checked={darkMode} />
           </div>
         </div>
         <IconButton

@@ -93,7 +93,11 @@ const Home = () => {
   }
 
   return (
-    <div className=" h-full w-full bg-[#ffffff] ">
+    <div
+      className={` h-full w-full ${
+        darkMode ? "bg-[#0D4045]" : " bg-[#f6f6f6]"
+      }`}
+    >
       <NavbarSimple />
       <div
         className={`min-h-screen ${

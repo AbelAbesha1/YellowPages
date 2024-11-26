@@ -16,7 +16,7 @@ export const loginUser = async (credentials) => {
 export const SignUpUser = async (credentials) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/users/register",
+      "https://yellowpagesbackend.cinisolution.com/api/users/register",
       credentials
     );
     console.log(response);

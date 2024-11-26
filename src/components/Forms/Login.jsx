@@ -10,10 +10,11 @@ import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { loginStart, loginSuccess, loginFail } from "../../features/authSlice";
 import { loginUser } from "../../api/authApi";
-
+import { useTheme } from "../../ThemeContext.jsx";
 import "react-toastify/dist/ReactToastify.css";
 
 export function Login() {
+  const { darkMode } = useTheme();
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({
     email: "",
@@ -51,9 +52,14 @@ export function Login() {
 
   return (
     <>
-      <Button onClick={handleOpen} className="bg-[#135D66]">
+      <div
+        onClick={handleOpen}
+        className={` border-none ${
+          darkMode ? "text-[#f6f6f6]" : " text-[#135D66]"
+        }`}
+      >
         Login
-      </Button>
+      </div>
       <Dialog
         size="lg"
         open={open}

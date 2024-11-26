@@ -16,10 +16,12 @@ import {
   SignUpStart,
 } from "../../features/authSlice";
 import { loginUser, SignUpUser } from "../../api/authApi";
+import { useTheme } from "../../ThemeContext.jsx";
 
 import "react-toastify/dist/ReactToastify.css";
 
 export function SignUp() {
+  const { darkMode } = useTheme();
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({
     email: "",
@@ -47,9 +49,12 @@ export function SignUp() {
       const credentials = user;
       console.log(credentials);
       const data = await SignUpUser(credentials);
-      console.log(data.token);
-      console.log(user);
       dispatch(SignUpSuccess({ user: user }));
+      const loginInfo = { email: user.email, password: user.password };
+      dispatch(loginStart());
+      const loginData = await loginUser(loginInfo);
+      console.log(loginData.token);
+      dispatch(loginSuccess({ user: user, token: loginData.token }));
     } catch (err) {
       dispatch(loginFail(err.message));
     }
@@ -57,9 +62,14 @@ export function SignUp() {
 
   return (
     <>
-      <Button onClick={handleOpen} className="bg-[#135D66]">
+      <div
+        onClick={handleOpen}
+        className={` border-none ${
+          darkMode ? "text-[#f6f6f6]" : " text-[#135D66]"
+        }`}
+      >
         SignUp
-      </Button>
+      </div>
 
       <Dialog
         size="lg"

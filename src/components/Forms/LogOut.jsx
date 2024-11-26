@@ -4,8 +4,10 @@ import { Button } from "@material-tailwind/react";
 import { logout } from "../../features/authSlice";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTheme } from "../../ThemeContext.jsx";
 
 export function Logout() {
+  const { darkMode } = useTheme();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
 
@@ -20,11 +22,16 @@ export function Logout() {
   }, [user]);
 
   return (
-    <div className="flex items-center justify-center mt-4">
+    <div className="flex items-center justify-center ">
       {user ? (
-        <Button onClick={handleLogout} className="bg-red-500">
+        <div
+          onClick={handleLogout}
+          className={` border-none ${
+            darkMode ? "text-[#f6f6f6]" : " text-[#135D66]"
+          }`}
+        >
           Logout
-        </Button>
+        </div>
       ) : (
         <p>You are not logged in</p>
       )}
