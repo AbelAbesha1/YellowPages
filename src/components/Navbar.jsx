@@ -50,10 +50,7 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a
-          href="#"
-          className="flex items-center hover:text-yellow-700 transition-colors"
-        >
+        <a href="#" className="flex items-center">
           <AddService />
         </a>
       </Typography>
@@ -120,11 +117,15 @@ export function NavbarSimple() {
       <Collapse open={openNav}>
         <NavList />
         {/* Dark Mode Toggle for Mobile */}
-        <div className="flex items-center justify-between px-4 mt-4 lg:hidden">
+        <div
+          className={`flex items-center justify-between px-4 mt-4 lg:hidden ${
+            darkMode ? " text-[#f6f6f6]" : "text-[#135D66]"
+          }`}
+        >
           <Typography variant="small" className="mr-2">
             {darkMode ? "Dark" : "Light"}
           </Typography>
-          <Switch color="yellow" onChange={toggleTheme} checked={darkMode} />
+          <Switch color="" onChange={toggleTheme} checked={darkMode} />
         </div>
       </Collapse>
     </Navbar>
