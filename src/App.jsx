@@ -5,7 +5,7 @@ function App() {
   const { darkMode } = useTheme();
   return (
     <div className={` ${darkMode ? "bg-[#0D4045]" : " bg-[#f6f6f6]"}`}>
-      <Home />;
+      <Home />
     </div>
   );
 }
