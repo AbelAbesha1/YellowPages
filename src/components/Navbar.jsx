@@ -81,7 +81,7 @@ export function NavbarSimple() {
   }, [darkMode]);
 
   return (
-    <Navbar className="bg-[#f6f6f6] border-none w-full px-6 py-3 shadow-sm rounded-sm dark:bg-[#135D66]">
+    <Navbar className="bg-[#f6f6f6] border-none w-full  py-3 shadow-sm rounded-sm dark:bg-[#135D66]">
       <div className="flex items-center justify-between text-blue-gray-900 dark:text-gray-200">
         <Typography
           as="a"
@@ -94,7 +94,7 @@ export function NavbarSimple() {
         <div className="hidden lg:flex items-center">
           <NavList />
           {/* Dark Mode Toggle */}
-          <div className="ml-6 flex items-center">
+          <div className=" flex items-center">
             <Typography variant="small" className="mr-2">
               {darkMode ? "Dark" : "Light"}
             </Typography>

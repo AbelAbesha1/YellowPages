@@ -119,7 +119,7 @@ const Home = () => {
           </div>
 
           {/* Categories List */}
-          <div className="w-full lg:w-[70%] flex flex-wrap justify-center gap-8 mt-6">
+          <div className="w-full flex gap-8 mt-6 mx-auto overflow-x-auto no-scrollbar lg:w-[70%] lg:overflow-visible lg:flex-wrap lg:justify-center">
             {categories.map((cat) => (
               <CategoryButton
                 key={cat.name}
