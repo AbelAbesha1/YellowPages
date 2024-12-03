@@ -257,13 +257,18 @@ const Home = () => {
 
 const CategoryButton = ({ title, icon: Icon, onClick, isSelected }) => {
   const { darkMode } = useTheme();
+
   return (
     <div className="flex flex-col items-center">
       <button
         className={`w-16 h-16 rounded-full flex items-center justify-center shadow-md transition duration-300 ${
           isSelected
-            ? "bg-[#f6f6f6] text-[#135D66]"
-            : "bg-[#135D66] text-[#f6f6f6] hover:bg-[#f6f6f6] hover:text-[#135D66]"
+            ? darkMode
+              ? "bg-[#135D66] text-[#f6f6f6]" // Dark mode selected state
+              : "bg-[#f6f6f6] text-[#135D66]" // Light mode selected state
+            : darkMode
+            ? "bg-[#f6f6f6] text-[#135D66] hover:bg-[#135D66] hover:text-[#f6f6f6]" // Dark mode hover effect
+            : "bg-[#135D66] text-[#f6f6f6] hover:bg-[#f6f6f6] hover:text-[#135D66]" // Light mode hover effect
         }`}
         onClick={onClick}
       >

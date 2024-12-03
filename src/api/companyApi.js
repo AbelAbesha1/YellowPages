@@ -15,21 +15,10 @@ const redirectToLogin = () => {
 
 // Function to add a new company
 export const addCompany = async (companyData) => {
-  const token = getAuthToken();
-  console.log(token, companyData);
-  if (!token) {
-    redirectToLogin();
-  }
-
   try {
     const response = await axios.post(
       "http://localhost:3000/api/companies",
-      companyData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      companyData
     );
     console.log(response);
     return response;

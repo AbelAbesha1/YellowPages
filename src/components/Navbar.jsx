@@ -25,31 +25,6 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a
-          href="#"
-          className={` flex items-center ${
-            darkMode ? "text-[#f6f6f6]" : " text-[#135D66]"
-          }`}
-        >
-          {user ? user.email : <Login />}
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a href="#" className="flex items-center">
-          {user ? <Logout /> : <SignUp />}
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
         <a href="#" className="flex items-center">
           <AddService />
         </a>
