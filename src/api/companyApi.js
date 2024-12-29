@@ -17,7 +17,7 @@ const redirectToLogin = () => {
 export const addCompany = async (companyData) => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/companies",
+      "https://yellowpagesbackend.cinisolution.com/api/companies",
       companyData
     );
     console.log(response);
